@@ -118,11 +118,11 @@ a {
 
 .nav-toggle {
   display: none;
-  width: 46px;
-  height: 46px;
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  background: var(--color-white);
+  width: 40px;
+  height: 32px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
   place-items: center;
   padding: 0;
@@ -130,11 +130,11 @@ a {
 
 .nav-toggle span {
   display: block;
-  width: 20px;
+  width: 24px;
   height: 2px;
-  margin: 3px 0;
+  margin: 4px 0;
   background: var(--color-navy);
-  border-radius: 10px;
+  border-radius: 0;
   transition: transform var(--transition), opacity var(--transition);
 }
 
@@ -355,6 +355,38 @@ a {
 .section-heading {
   max-width: 720px;
   margin-bottom: 40px;
+}
+
+.section-title {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.section-title h2 {
+  min-width: 0;
+}
+
+.section-icon {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  color: var(--color-navy);
+  flex: 0 0 auto;
+}
+
+.section-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-navy);
+  fill: rgba(199, 163, 74, 0.18);
+  stroke-width: 1.8;
+}
+
+.cta-section .section-icon svg {
+  stroke: var(--color-white);
+  fill: rgba(199, 163, 74, 0.35);
 }
 
 .section-actions {
@@ -783,9 +815,10 @@ a {
   }
 
   .brand-text {
-    max-width: 150px;
-    white-space: normal;
-    line-height: 1.1;
+    max-width: none;
+    white-space: nowrap;
+    line-height: 1;
+    font-size: 0.92rem;
   }
 
   .nav-toggle {
@@ -807,6 +840,8 @@ a {
     transform: translateY(-10px);
     opacity: 0;
     pointer-events: none;
+    max-height: calc(100vh - var(--header-height) - 32px);
+    overflow-y: auto;
     transition: opacity var(--transition), transform var(--transition);
   }
 
@@ -831,8 +866,12 @@ a {
   }
 
   .hero {
-    min-height: 650px;
+    min-height: 620px;
     padding-bottom: 72px;
+  }
+
+  .page-hero {
+    min-height: 560px;
   }
 
   .section {
@@ -844,6 +883,10 @@ a {
   .projects-grid,
   .project-library-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-thumbs {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .value-card,
@@ -860,13 +903,31 @@ a {
 }
 
 @media (max-width: 540px) {
+  .container {
+    width: min(100% - 32px, var(--container));
+  }
+
+  .hero,
+  .page-hero {
+    min-height: 520px;
+    padding: calc(var(--header-height) + 52px) 0 64px;
+    background-position: center top;
+  }
+
   .hero h1 {
     font-size: 2.55rem;
+  }
+
+  .hero p,
+  .page-hero p {
+    font-size: 1rem;
   }
 
   .hero-actions,
   .contact-actions {
     width: 100%;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .hero-actions .btn,
@@ -879,5 +940,49 @@ a {
   .section-heading h2,
   .cta-content h2 {
     font-size: 2rem;
+  }
+
+  .section-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .project-content {
+    padding: 20px;
+  }
+
+  .project-thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .project-thumbs img {
+    flex: 0 0 96px;
+    scroll-snap-align: start;
+  }
+
+  .cta-section {
+    padding: 56px 0;
+  }
+
+  .contact-card {
+    padding: 24px;
+  }
+
+  .footer-grid {
+    gap: 28px;
+    padding: 52px 0 36px;
+  }
+
+  .footer-logo {
+    width: 120px;
+    height: 120px;
   }
 }

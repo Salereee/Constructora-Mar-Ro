@@ -49,3 +49,7 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealElements.forEach((element) => revealObserver.observe(element));
+
+if (window.lucide) {
+  window.lucide.createIcons();
+}
